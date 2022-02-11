@@ -2,6 +2,7 @@
 
 namespace Bjerke\Ecommerce\Models;
 
+use Bjerke\Bread\Builder\DefinitionBuilder;
 use Bjerke\Bread\Models\BreadModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Lang;

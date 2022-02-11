@@ -64,7 +64,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-bread",
-                "reference": "d5b542590d14eb0b89fd1062972fcc6c5617d296"
+                "reference": "5d6015ff02fe3175082fbc6acb2720bb4ea80d69"
             },
             "require": {
                 "bjerke/api-query-builder": "@dev",
