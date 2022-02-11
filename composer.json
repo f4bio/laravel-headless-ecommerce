@@ -22,7 +22,7 @@
   "require": {
     "php": "^8.0",
     "ext-intl": "*",
-    "illuminate/support": "^9.0.2",
+    "illuminate/support": "^9",
     "illuminate/http": "^9.0.2",
     "illuminate/database": "^9.0.2",
     "illuminate/bus": "^9.0.2",
@@ -34,7 +34,9 @@
     "laravel/scout": "^9.4.3",
     "moneyphp/money": "^4.0.3",
     "league/omnipay": "^3.0",
-    "bjerke/api-query-builder": "@dev"
+    "bjerke/api-query-builder": "@dev",
+    "bjerke/laravel-enums": "@dev",
+    "bjerke/laravel-bread": "@dev"
   },
   "autoload": {
     "psr-4": {
@@ -57,18 +59,15 @@
   "repositories": [
     {
       "type": "path",
-      "url": "../laravel-bread",
-      "canonical": false
+      "url": "../laravel-bread"
     },
     {
       "type": "path",
-      "url": "../laravel-api-query-builder",
-      "canonical": false
+      "url": "../laravel-api-query-builder"
     },
     {
       "type": "path",
-      "url": "../laravel-enums",
-      "canonical": false
+      "url": "../laravel-enums"
     }
   ]
 }
