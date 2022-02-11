@@ -1,59 +1,74 @@
 {
-    "name": "bjerke/laravel-headless-ecommerce",
-    "description": "A headless ecommerce package for Laravel",
-    "keywords": [
-        "jesperbjerke",
-        "headless",
-        "api",
-        "ecommerce",
-        "shopping",
-        "shop",
-        "rest",
-        "laravel"
-    ],
-    "license": "MIT",
-    "type": "library",
-    "authors": [
-        {
-            "name": "Jesper Bjerke",
-            "email": "jesper.bjerke@gmail.com"
-        }
-    ],
-    "require": {
-        "php": ">=7.4",
-        "ext-intl" : "*",
-        "illuminate/support": "^8.0",
-        "illuminate/http": "^8.0",
-        "illuminate/database": "^8.0",
-        "illuminate/bus": "^8.0",
-        "illuminate/console": "^8.0",
-        "spatie/laravel-sluggable": "^2.6",
-        "spatie/laravel-translatable": "^4.6",
-        "spatie/laravel-medialibrary": "^9.0",
-        "bjerke/api-query-builder": "^1.1",
-        "bjerke/laravel-bread": "^1.8",
-        "bjerke/laravel-enums": "^1.0",
-        "kalnoy/nestedset": "^5.0",
-        "laravel/scout": "^8.5.1",
-        "moneyphp/money": "^3.3.1",
-        "league/omnipay": "^3.0"
+  "name": "bjerke/laravel-headless-ecommerce",
+  "description": "A headless ecommerce package for Laravel",
+  "keywords": [
+    "jesperbjerke",
+    "headless",
+    "api",
+    "ecommerce",
+    "shopping",
+    "shop",
+    "rest",
+    "laravel"
+  ],
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Jesper Bjerke",
+      "email": "jesper.bjerke@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "ext-intl": "*",
+    "illuminate/support": "^9.0.2",
+    "illuminate/http": "^9.0.2",
+    "illuminate/database": "^9.0.2",
+    "illuminate/bus": "^9.0.2",
+    "illuminate/console": "^9.0.2",
+    "spatie/laravel-sluggable": "^3.3.0",
+    "spatie/laravel-translatable": "^5.2.0",
+    "spatie/laravel-medialibrary": "^10.0.6",
+    "kalnoy/nestedset": "^6.0.1",
+    "laravel/scout": "^9.4.3",
+    "moneyphp/money": "^4.0.3",
+    "league/omnipay": "^3.0",
+    "bjerke/api-query-builder": "@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bjerke\\Ecommerce\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Bjerke\\Ecommerce\\EcommerceServiceProvider"
+      ],
+      "aliases": {
+        "PriceHelper": "Bjerke\\Ecommerce\\Facades\\PriceHelper",
+        "PaymentHelper": "Bjerke\\Ecommerce\\Facades\\PaymentHelper"
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../laravel-bread",
+      "canonical": false
     },
-    "autoload": {
-        "psr-4": {
-            "Bjerke\\Ecommerce\\": "src"
-        }
+    {
+      "type": "path",
+      "url": "../laravel-api-query-builder",
+      "canonical": false
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Bjerke\\Ecommerce\\EcommerceServiceProvider"
-            ],
-            "aliases": {
-                "PriceHelper": "Bjerke\\Ecommerce\\Facades\\PriceHelper",
-                "PaymentHelper": "Bjerke\\Ecommerce\\Facades\\PaymentHelper"
-            }
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    {
+      "type": "path",
+      "url": "../laravel-enums",
+      "canonical": false
+    }
+  ]
 }
