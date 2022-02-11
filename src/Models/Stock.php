@@ -2,6 +2,7 @@
 
 namespace Bjerke\Ecommerce\Models;
 
+use Bjerke\Bread\Builder\DefinitionBuilder;
 use Bjerke\Bread\Models\BreadModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Lang;
@@ -12,7 +13,7 @@ class Stock extends BreadModel
         'available_quantity'
     ];
 
-    protected function define(): void
+    protected function define(): DefinitionBuilder
     {
         $this->addFieldHasOne(
             'product',
@@ -71,6 +72,7 @@ class Stock extends BreadModel
                 'description' => Lang::get('ecommerce::fields.descriptions.low_stock_threshold')
             ]
         );
+        return new DefinitionBuilder($this);
     }
 
     public function product(): BelongsTo
