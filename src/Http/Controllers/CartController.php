@@ -4,10 +4,12 @@ namespace Bjerke\Ecommerce\Http\Controllers;
 
 use Bjerke\Bread\Helpers\RequestParams;
 use Bjerke\Bread\Http\Controllers\BreadController;
+use Bjerke\Ecommerce\Exceptions\InvalidCartItemQuantity;
 use Bjerke\Ecommerce\Models\Cart;
 use Bjerke\Ecommerce\Models\CartItem;
 use Bjerke\Ecommerce\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
@@ -20,7 +22,7 @@ class CartController extends BreadController
         $this->modelName = config('ecommerce.models.cart');
     }
 
-    public function view(Request $request, $id, $applyQuery = null)
+    public function view(Request $request, $id, $applyQuery = null): Model
     {
         Cart::mergeAppends(['totals']);
         CartItem::mergeAppends(['totals']);
@@ -40,7 +42,10 @@ class CartController extends BreadController
         return parent::create($request, $with, $manualAttributes, $beforeSave);
     }
 
-    public function addCartItem(Request $request, $id)
+  /**
+   * @throws InvalidCartItemQuantity
+   */
+  public function addCartItem(Request $request, $id)
     {
         Cart::mergeAppends(['totals']);
         CartItem::mergeAppends(['totals']);

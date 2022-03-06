@@ -34,12 +34,20 @@ class CartItem extends BreadModel
         return $this->belongsTo(config('ecommerce.models.product'));
     }
 
-    public function getTotalsAttribute(): array
+  /**
+   * @throws CorruptCartPricing
+   * @throws InvalidCartItemProduct
+   */
+  public function getTotalsAttribute(): array
     {
         return $this->calculateTotals($this->cart->currency, $this->cart->store_id);
     }
 
-    public function getActivePrice(string $currency, int $storeId = null): Price
+  /**
+   * @throws InvalidCartItemProduct
+   * @throws CorruptCartPricing
+   */
+  public function getActivePrice(string $currency, int $storeId = null): Price
     {
         $this->loadMissing(['product.prices']);
 
@@ -60,13 +68,22 @@ class CartItem extends BreadModel
         return $price;
     }
 
-    public function calculateTotals(string $currency, int $storeId = null): array
+  /**
+   * @throws InvalidCartItemProduct
+   * @throws CorruptCartPricing
+   */
+  public function calculateTotals(string $currency, int $storeId = null): array
     {
         $this->loadMissing(['product.activeDeals']);
         return $this->getActivePrice($currency, $storeId)->calculateTotals($this->quantity);
     }
 
-    public function validateContents(string $currency, int $storeId = null): bool
+  /**
+   * @throws InvalidCartItemProduct
+   * @throws CorruptCartPricing
+   * @throws InvalidCartItemQuantity
+   */
+  public function validateContents(string $currency, int $storeId = null): bool
     {
         $this->loadMissing(['product.stocks', 'product.prices']);
 
@@ -80,7 +97,10 @@ class CartItem extends BreadModel
         return true;
     }
 
-    public static function validateStock(Product $product, int $quantity, int $storeId = null): bool
+  /**
+   * @throws InvalidCartItemQuantity
+   */
+  public static function validateStock(Product $product, int $quantity, int $storeId = null): bool
     {
         /* @var $stock Stock|null */
         $stock = $product->stocks
@@ -95,7 +115,10 @@ class CartItem extends BreadModel
         return true;
     }
 
-    public static function validatePricing(Product $product, string $currency, int $storeId = null): bool
+  /**
+   * @throws CorruptCartPricing
+   */
+  public static function validatePricing(Product $product, string $currency, int $storeId = null): bool
     {
         /* @var $price Price|null */
         $price = $product->prices

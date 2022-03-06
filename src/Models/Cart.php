@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Money\Currency;
 use Money\Money;
+use Throwable;
 
 class Cart extends BreadModel
 {
@@ -125,7 +126,7 @@ class Cart extends BreadModel
             if ($this->updated_at->isBefore($ttl)) {
                 throw new CartHasExpired();
             }
-        } catch (\Throwable $error) {
+        } catch (Throwable $error) {
             if (!isset($errors['cart'])) {
                 $errors['cart'] = [];
             }
@@ -136,7 +137,7 @@ class Cart extends BreadModel
         $this->cartItems->each(function (CartItem $cartItem) use (&$errors) {
             try {
                 $cartItem->validateContents($this->currency, $this->store_id);
-            } catch (\Throwable $error) {
+            } catch (Throwable $error) {
                 if (!isset($errors['cart_items'])) {
                     $errors['cart_items'] = [];
                 }
